@@ -15,16 +15,8 @@ nhan = np.unique(y)
 Py = {}
 Pxy = {}
 
-for cls in nhan:
-    X_cls = X[y == cls]
-    Py[cls] = len(X_cls) / len(y)
-    Pxy[cls] = {
-        "mean": np.mean(X_cls, axis=0),
-        "std": np.std(X_cls, axis=0)
-    }
 
 def gaussian_prob(x, mean, std):
-    """Tính xác suất Gaussian P(x | Y)"""
     eps = 1e-6
     std = std + eps
     exponent = np.exp(-((x - mean) ** 2) / (2 * std ** 2))
@@ -55,5 +47,5 @@ for cls in nhan:
     }
 
 y_pred = predict(X_test)
-
 print("Accuracy:", accuracy_score(y_test, y_pred))
+

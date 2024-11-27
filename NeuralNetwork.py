@@ -9,7 +9,7 @@ import ThongKeDuLieu as tk
 
 data = pd.read_csv("heart_disease_health_indicators_BRFSS2015.csv")
 
-data = tk.Smote(data)
+data = tk.Randomundersampler(data)
 
 X = data.iloc[:, 1:].values
 y = data.iloc[:, 0].values
@@ -19,9 +19,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
-
-
-
 
 model = Sequential()
 model.add(Dense(64, input_dim=X_train.shape[1], activation='relu'))

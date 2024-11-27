@@ -15,14 +15,12 @@ def select_10features(data):
     return data
 
 def Smote(data):
-    X = data.drop('HeartDiseaseorAttack', axis=1)  # Giả sử 'target' là tên cột nhãn
+    X = data.drop('HeartDiseaseorAttack', axis=1)
     y = data['HeartDiseaseorAttack']
 
-    # Sử dụng SMOTE để oversample lớp thiểu số
     smote = SMOTE(sampling_strategy='auto', random_state=42)
     X_resampled, y_resampled = smote.fit_resample(X, y)
 
-    # Chuyển lại thành DataFrame
     data_resampled = pd.DataFrame(X_resampled, columns=X.columns)
     data_resampled.insert(0, 'HeartDiseaseorAttack', y_resampled)
 
